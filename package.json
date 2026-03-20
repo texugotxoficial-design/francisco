@@ -12,6 +12,7 @@
     "build": "vite build",
     "preview": "vite preview",
     "start": "node index.js",
+    "postinstall": "npm run build",
     "clean": "rm -rf dist",
     "lint": "tsc --noEmit"
   },

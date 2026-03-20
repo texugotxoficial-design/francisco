@@ -8,7 +8,7 @@ const __dirname = dirname(__filename);
 const app = express();
 const PORT = process.env.PORT || 80;
 
-app.use(express.static(join(__dirname, 'dist')));
+app.use(express.static(join(process.cwd(), 'dist')));
 
 app.get('/api/health', (req, res) => {
   res.json({ status: 'ok', server: 'Node.js', time: new Date().toISOString() });
@@ -16,7 +16,7 @@ app.get('/api/health', (req, res) => {
 
 
 app.get('*', (req, res) => {
-  res.sendFile(join(__dirname, 'dist', 'index.html'));
+  res.sendFile(join(process.cwd(), 'dist', 'index.html'));
 });
 
 app.listen(PORT, '0.0.0.0', () => {
