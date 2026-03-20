@@ -22,11 +22,7 @@ export default defineConfig(({mode}) => {
     },
     build: {
       outDir: 'dist',
-      rollupOptions: {
-        input: {
-          index: path.resolve(process.cwd(), 'index.html'),
-        },
-      },
+      emptyOutDir: true,
       reportCompressedSize: true,
     },
     server: {
