@@ -1,5 +1,5 @@
 MAIN=index.js
-MEMORY=256
+MEMORY=512
 VERSION=recommended
 DISPLAY_NAME=LS Doce Amor
 TYPE=node
