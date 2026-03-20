@@ -22,7 +22,8 @@ app.get('/api/health', (req, res) => {
   res.json({ 
     status: 'ok', 
     server: 'Node.js', 
-    update: 'v3', 
+    update: 'v5', 
+    build_date: '2026-03-20',
     cwd: process.cwd(),
     files,
     dist: distFiles,
