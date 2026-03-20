@@ -1,5 +1,6 @@
 import express from 'express';
 import { fileURLToPath } from 'url';
+import fs from 'fs';
 import { dirname, join } from 'path';
 
 const __filename = fileURLToPath(import.meta.url);
@@ -11,7 +12,22 @@ const PORT = process.env.PORT || 80;
 app.use(express.static(join(process.cwd(), 'dist')));
 
 app.get('/api/health', (req, res) => {
-  res.json({ status: 'ok', server: 'Node.js', update: 'v2', time: new Date().toISOString() });
+  const files = fs.readdirSync(process.cwd());
+  let distFiles = [];
+  try {
+    distFiles = fs.readdirSync(join(process.cwd(), 'dist'));
+  } catch (e) {
+    distFiles = ['error: ' + e.message];
+  }
+  res.json({ 
+    status: 'ok', 
+    server: 'Node.js', 
+    update: 'v3', 
+    cwd: process.cwd(),
+    files,
+    dist: distFiles,
+    time: new Date().toISOString() 
+  });
 });
 
 
