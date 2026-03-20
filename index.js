@@ -9,31 +9,32 @@ const __dirname = dirname(__filename);
 const app = express();
 const PORT = process.env.PORT || 80;
 
-app.use(express.static(join(process.cwd(), 'dist')));
+app.use(express.static(join(process.cwd(), 'build')));
 
 app.get('/api/health', (req, res) => {
   const files = fs.readdirSync(process.cwd());
   let distFiles = [];
+  let buildFiles = []; // Changed from distFiles to buildFiles
   try {
-    distFiles = fs.readdirSync(join(process.cwd(), 'dist'));
+    buildFiles = fs.readdirSync(join(process.cwd(), 'build'));
   } catch (e) {
-    distFiles = ['error: ' + e.message];
+    buildFiles = ['error: ' + e.message];
   }
-  res.json({ 
-    status: 'ok', 
-    server: 'Node.js', 
-    update: 'v6', 
-    version: '0.1.0',
+  res.json({
+    status: 'ok',
+    server: 'Node.js',
+    update: 'v7',
+    target: 'build_folder',
     cwd: process.cwd(),
     files,
-    dist: distFiles,
-    time: new Date().toISOString() 
+    build: buildFiles, // Changed from dist: distFiles to build: buildFiles
+    time: new Date().toISOString()
   });
 });
 
 
 app.get('*', (req, res) => {
-  res.sendFile(join(process.cwd(), 'dist', 'index.html'));
+  res.sendFile(join(process.cwd(), 'build', 'index.html'));
 });
 
 app.listen(PORT, '0.0.0.0', () => {
