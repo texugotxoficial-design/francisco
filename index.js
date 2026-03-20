@@ -11,7 +11,7 @@ const PORT = process.env.PORT || 80;
 app.use(express.static(join(process.cwd(), 'dist')));
 
 app.get('/api/health', (req, res) => {
-  res.json({ status: 'ok', server: 'Node.js', time: new Date().toISOString() });
+  res.json({ status: 'ok', server: 'Node.js', update: 'v2', time: new Date().toISOString() });
 });
 
 
