@@ -17,14 +17,14 @@ export default defineConfig(({mode}) => {
     },
     resolve: {
       alias: {
-        '@': path.resolve(__dirname, '.'),
+        '@': path.resolve(process.cwd(), '.'),
       },
     },
     build: {
       outDir: 'dist',
       rollupOptions: {
         input: {
-          index: path.resolve(__dirname, 'index.html'),
+          index: path.resolve(process.cwd(), 'index.html'),
         },
       },
       reportCompressedSize: true,
